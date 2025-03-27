@@ -5,4 +5,6 @@ class Enemy:
 
     def take_dmg(self, dmg: int):
         self.hp-=dmg
+        
+
     
