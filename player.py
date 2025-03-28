@@ -5,6 +5,7 @@ class Player:
         self.weapon = weapon
 
         self.lvl = 1
+        self.shielded = False
         self.MaxHP = 0
         self.CurrentHP = 0
         self.DEF = 0
@@ -30,9 +31,38 @@ class Player:
         print('Energy : ' + str(self.Energy))
         print('Max Energy: ' + str(self.MaxEnergy))
 
+
     def fight(self, attack: str)->str:
         attack = input()
         if attack.lower == "normal attack":
             dmg = int(random.uniform(self.ATK * .1, self.ATK * .2))
+            used_skill = False
+        
         elif attack.lower == "skill":
-            dmg = int(random.uniform(self.ATK * .2, self.ATK * .3))
+            if used_skill:
+                print('Your skill is on cooldown! Try something else.')
+            else:
+                dmg = int(random.uniform(self.ATK * .2, self.ATK * .3))
+                used_skill = True
+                shielded = False
+        
+        elif attack.lower == "shield":
+            self.shielded == True
+            slime_dmg -= int(random.uniform(self.DEF * 0.07, self.DEF * 0.1))
+            used_skill = False
+            shielded = False
+        
+        elif attack.lower == "burst":
+            if self.Energy < self.MAXEnergy:
+                print("Not enough energy to use burst right now.")
+            else:
+                dmg = int(random.uniform(self.ATK * .4, self.ATK * .5))
+            used_skill = False
+            shielded = False
+
+    
+    def hurt(self, slime_dmg: int):
+        self.CurrentHP -= slime_dmg
+
+    def player_revive(self):
+        self.CurrentHP = self.MAXHP

@@ -1,6 +1,7 @@
 import time
 import random
 from player import Player
+from enemy import Enemy
 
 def print_dramatic_text(text: str, delay=0.05):
     for char in text:
@@ -34,3 +35,18 @@ if __name__ == '__main__':
     print("Your burst does even more damage than your skill.")
     print("")
     print("Good luck on your first battle!")
+
+    monster = Enemy("monster", 40, 5)
+
+    while monster.hp > 0:
+        if player.CurrentHP > 0:
+            player.fight()
+            monster.take_dmg()
+            monster.hit()
+            player.hurt()
+        else:
+            print("You've been defeated! Let's try this again.")
+            player.player_revive()
+            monster.enemy_revive()
+    print("Congradulations " + player.name + ". You've completed the battle!")
+
