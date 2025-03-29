@@ -19,11 +19,12 @@ class Player:
         self.MAXHP = stats[1]
         self.DEF = stats[2]
         self.MAXEnergy = stats[3]
+
         self.CurrentHP = self.MAXHP      
 
     def print_stats(self):
         print('Name: ' + self.name)
-        print('Weapn: ' + self.weapon)
+        print('Weapon: ' + self.weapon)
         print('ATK: ' + str(self.ATK))
         print('Max HP: ' + str(self.MAXHP))
         print('Current HP: ' + str(self.CurrentHP))
@@ -33,18 +34,17 @@ class Player:
 
 
     def fight(self, attack: str)->str:
-        attack = input()
         if attack.lower == "normal attack":
             dmg = int(random.uniform(self.ATK * .1, self.ATK * .2))
             used_skill = False
-        
+            shielded - False
+
         elif attack.lower == "skill":
             if used_skill:
                 print('Your skill is on cooldown! Try something else.')
-            else:
-                dmg = int(random.uniform(self.ATK * .2, self.ATK * .3))
-                used_skill = True
-                shielded = False
+            dmg = int(random.uniform(self.ATK * .2, self.ATK * .3))
+            used_skill = True
+            shielded = False
         
         elif attack.lower == "shield":
             self.shielded == True
@@ -59,10 +59,12 @@ class Player:
                 dmg = int(random.uniform(self.ATK * .4, self.ATK * .5))
             used_skill = False
             shielded = False
+    
 
     
     def hurt(self, slime_dmg: int):
         self.CurrentHP -= slime_dmg
+        print("The enemy hits you and deals " + str(slime_dmg) + " damage. You have " + str(self.CurrentHP) + " remaining.")
 
     def player_revive(self):
         self.CurrentHP = self.MAXHP
