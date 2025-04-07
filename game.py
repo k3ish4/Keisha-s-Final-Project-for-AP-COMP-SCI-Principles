@@ -40,7 +40,7 @@ if __name__ == '__main__':
     monster = Enemy("slime", 35, 5)
 
     while monster.hp > 0:
-        print("\nType in any of the aforementioned Sactions to make a move.")
+        print("\nType in any of the aforementioned actions to make a move.")
         attack = input()
         if player.CurrentHP > 0:
             dmg = player.fight(attack)
