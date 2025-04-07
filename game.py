@@ -37,19 +37,20 @@ if __name__ == '__main__':
     print("")
     print("Good luck on your first battle!")
     print("")
-    monster = Enemy("slime", 40, 5)
+    monster = Enemy("slime", 35, 5)
 
     while monster.hp > 0:
+        print("\nType in any of the aforementioned Sactions to make a move.")
         attack = input()
         if player.CurrentHP > 0:
-            player.fight()
-            monster.take_dmg()
-            monster.hit()
-            player.hurt()
+            dmg = player.fight(attack)
+            monster.take_dmg(dmg)
+            slime_dmg = monster.hit()
+            player.hurt(slime_dmg)
         else:
             print("You've been defeated! Let's try this again.")
             player.player_revive()
             monster.enemy_revive()
 
-    print("Congratulations " + player.name + ". You've completed the battle!")
+    print("\nCongratulations " + player.name + ". Lift your " + player.weapon + " to the sky in victory! You've completed the battle!")
 
