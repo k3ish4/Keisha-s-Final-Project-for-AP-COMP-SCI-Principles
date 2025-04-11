@@ -76,9 +76,11 @@ class Player:
     
     def hurt(self, slime_dmg: int):
         if self.shielded: 
-            self.CurrentHP -= slime_dmg / 2
+            self.CurrentHP -= int(slime_dmg / 2)
         else:
             self.CurrentHP -= slime_dmg
+        if self.CurrentHP <= 0:
+            self.CurrentHP = 0
         print("The enemy hits you and deals " + str(slime_dmg) + " damage. You have " + str(self.CurrentHP) + " remaining.")
 
     def player_revive(self):

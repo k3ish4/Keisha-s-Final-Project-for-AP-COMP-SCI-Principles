@@ -8,6 +8,8 @@ class Enemy:
 
     def take_dmg(self, dmg: int):
         self.hp -= dmg
+        if self.hp<=0:
+            self.hp=0
         print("You strike the enemy and deal " + str(dmg) + " damage. " + str(self.hp) + " hp remaining")
         
     def hit(self) -> int: 
